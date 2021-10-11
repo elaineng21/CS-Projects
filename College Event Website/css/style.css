@@ -1,0 +1,1634 @@
+@charset "UTF-8";
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  background-color:white;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h2 {
+  color: #000;
+  font-weight: 600;
+}
+
+h4 {
+  color: #505050;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+h5 {
+  color: #626262;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+a {
+  letter-spacing: 2px;
+  text-decoration: none;
+  color:gold;
+}
+
+a:hover {
+  color: gold;
+}
+
+ul {
+  letter-spacing: 1px;
+}
+
+li {
+  color: #626262;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 30px;
+  text-transform: capitalize;
+}
+
+p {
+  color: #505050;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 2;
+}
+
+span {
+  letter-spacing: 1px;
+}
+
+.img-fluid {
+  height: 60px;
+  margin-bottom: 30px;
+  width: 60px;
+}
+
+.container-full {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.fa {
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  background:black;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  transition: all 0.5s ease;
+}
+
+#header #logo h1 a {
+  color: #555;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+}
+
+#header #logo h1 a span {
+  color:black;
+}
+
+#header #logo img {
+  padding: 0;
+  margin: 0;
+  height: 125px;
+  width: auto;
+}
+
+#header.header-scrolled {
+  background:black;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: calc(100vh - 40px);
+  background: url(../img/hero2.png) center bottom no-repeat;
+  background-size: 100%;
+  position: relative;
+  margin-top: 40px;
+}
+
+#hero .hero-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+}
+
+#hero h2 {
+  color: #777;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+#hero img {
+  max-width: 75%;
+  margin-bottom: 50px;
+}
+
+#hero .btn-get-started {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 11px 36px;
+  border-radius: 50px;
+  transition: 0.5s;
+  border: 2px solid gold;
+  background: black;
+  color: gold;
+  text-decoration: none;
+}
+
+#hero .btn-get-started:hover {
+  background: gold;
+  color: black;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+}
+
+.nav-menu li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu > li {
+  float: left;
+}
+
+.nav-menu li:hover > ul,
+.nav-menu li.sfHover > ul {
+  display: block;
+}
+
+.nav-menu ul ul {
+  top: 0;
+  left: 100%;
+}
+
+.nav-menu ul li {
+  min-width: 180px;
+}
+
+#nav-menu-container {
+  margin: 0 0 0 0;
+}
+
+.nav-menu a {
+  padding: 8px 8px;
+  text-decoration: none;
+  display: inline-block;
+  color:white;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  outline: none;
+  letter-spacing: 0;
+  transition: 0.3s;
+}
+
+.nav-menu li:hover > a, .nav-menu > .menu-active > a {
+  color: gold;
+}
+
+.nav-menu > li {
+  margin-left: 10px;
+}
+
+.nav-menu ul {
+  margin: 0;
+  padding: 10px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  background: #fff;
+}
+
+.nav-menu ul li {
+  transition: 0.3s;
+}
+
+.nav-menu ul li a {
+  padding: 5px 10px;
+  color: #333;
+  transition: 0.3s;
+  display: block;
+  font-size: 14px;
+  text-transform: none;
+}
+
+.nav-menu ul li:hover > a {
+  color:gold;
+}
+
+.nav-menu ul ul {
+  margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.footer {
+  background:black;
+  padding-top: 30px;
+}
+
+.footer .footer-logo .navbar-brand {
+  color:gold;
+  display: inline-block;
+  float: none;
+  font-family: "Philosopher", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  height: 100%;
+  letter-spacing: 0.2em;
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.footer .footer-logo p {
+  color:gold;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.footer .copyrights {
+  background:gold;
+  margin-top: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+.footer .copyrights p, .footer .copyrights .credits {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: black;
+}
+
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+#about {
+  width: 100%;
+  height: calc(100vh - 40px);
+  position: relative;
+  margin-top: 75px;
+  margin-bottom: 50px;
+}
+
+#about h1 {
+  padding-top: 100px;
+  padding-bottom: 20px;
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+}
+
+#about h2 {
+  color: #777;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  width: 1000px;
+}
+
+#about .about-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Contact Us Section
+--------------------------------------------------------------*/
+#contact .block-contact {
+  background:black;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 82px;
+  margin-bottom: 200px;
+  margin-left: 165px;
+}
+
+#contact .block-contact .table {
+  margin-bottom: 0;
+  padding: 30px 15px;
+  max-width: 100%;
+  width: 100%;
+}
+
+#contact .block-contact h2 {
+  margin-bottom: 30px;
+  color: gold;
+}
+
+#contact h1 {
+  padding-top: 200px;
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+}
+
+#contact .block-contact p {
+  color:gold;
+}
+
+/*--------------------------------------------------------------
+# Sign Up Section
+--------------------------------------------------------------*/
+#signup {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 250px;
+  margin-top: 250px;
+}
+
+#signup h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-bottom: 50px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#signup .info {
+  color: #222;
+}
+
+#signup .info i {
+  font-size: 32px;
+  color:black;
+  float: left;
+}
+
+#signup .info p {
+  padding: 0 0 10px 50px;
+  margin-bottom: 20px;
+  line-height: 22px;
+  font-size: 14px;
+}
+
+#signup .info .email p {
+  padding-top: 5px;
+}
+
+#signup .php-email-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+#signup .php-email-form #wrongpass {
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+#signup .php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+#signup .php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+#signup .php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
+#signup .php-email-form input, #contact .php-email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+#signup .php-email-form input:focus, #contact .php-email-form textarea:focus {
+  border-color: gold;
+}
+
+#signup .php-email-form input {
+  padding: 10px 15px;
+}
+
+#signup .php-email-form textarea {
+  padding: 12px 15px;
+}
+
+#signup .php-email-form button[type="submit"] {
+  background: black;
+  border: 0;
+  padding: 10px 24px;
+  color: gold;
+  transition: 0.4s;
+  margin-top: 25px;
+}
+
+#signup .php-email-form button[type="submit"]:hover {
+  background: black;
+}
+
+#signup #error {
+  color: red;
+  font-size: small;
+}
+
+/*--------------------------------------------------------------
+# Side Bar
+--------------------------------------------------------------*/
+.sidenav a {
+  padding: 10px 10px 10px 32px;
+  text-decoration: none;
+  font-size: 14px;
+  color: gray;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: white;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  padding-top: 20px;
+  font-size: 16px;
+  font-family: "Philosopher", sans-serif;
+}
+
+.sidenav #logo img {
+  padding: 0;
+  margin: 0;
+  height: 125px;
+  width: auto;
+}
+
+.sidenav #sidebar-active > a{
+  color: gold;
+}
+
+/*--------------------------------------------------------------
+# Super Admin Dashboard
+--------------------------------------------------------------*/
+#superadmin .block-superadmin {
+  background:white;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+#superadmin .block-superadmin .table {
+  margin-top: 20px;
+  max-width: 100%;
+  width: 100%;
+}
+
+#superadmin .block-superadmin h2 {
+  margin-bottom: 30px;
+  color: black;
+  font-size: 20px;
+}
+
+#superadmin h1 {
+  padding-top: 50px;
+  margin-top: 100px;
+  margin-left: 130px;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+}
+
+#superadmin h4 {
+  margin-left: 130px;
+}
+
+#superadmin .block-superadmin p {
+  color:gold;
+  font-size: 16px;
+}
+
+#superadmin .btn {
+  border: 1px solid gold;
+  border-radius: 50px;
+  color: gold;
+  background: black;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+#superadmin .btn:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+/*--------------------------------------------------------------
+# Admin Dashboard
+--------------------------------------------------------------*/
+#admin .block-admin {
+  background:white;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-left: 100px;
+}
+
+#admin .block-admin .table {
+  margin-top: 20px;
+  max-width: 100%;
+  width: 100%;
+}
+
+#admin .block-admin h2 {
+  margin-bottom: 30px;
+  color: black;
+  font-size: 20px;
+}
+
+#admin h1 {
+  padding-top: 50px;
+  margin-top: 100px;
+  margin-left: 130px;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+}
+
+#admin h4 {
+  margin-left: 140px;
+}
+
+#admin .block-admin p {
+  color:gold;
+  font-size: 16px;
+}
+
+#admin .btn {
+  border: 1px solid gold;
+  border-radius: 50px;
+  color: gold;
+  background: black;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+#admin .btn:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+/*--------------------------------------------------------------
+# Student Dashboard
+--------------------------------------------------------------*/
+#student .block-student {
+  background:white;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 225px;
+  margin-left: 100px;
+}
+
+#student .block-student .table {
+  margin-top: 20px;
+  max-width: 100%;
+  width: 100%;
+}
+
+#student .block-student h2 {
+  margin-bottom: 30px;
+  color: black;
+  font-size: 20px;
+}
+
+#student h1 {
+  padding-top: 50px;
+  margin-top: 100px;
+  margin-left: 150px;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+}
+
+#student h4 {
+  margin-left: 150px;
+}
+
+#student .block-student p {
+  color:gold;
+  font-size: 16px;
+}
+
+#student .btn {
+  border: 1px solid gold;
+  border-radius: 50px;
+  color: gold;
+  background: black;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+#student .btn:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+/*--------------------------------------------------------------
+# Super Admin - Create University Profile Section
+--------------------------------------------------------------*/
+#createuni {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+#createuni h2 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-right: 240px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#createuni .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+#createuni .col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+  padding: 0 16px;
+}
+
+#createuni input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#createuni textarea {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#createuni button[type="submit"] {
+  background: black;
+  border: 0;
+  padding: 10px 50px;
+  color: gold;
+  transition: 0.4s;
+  margin-top: 30px;
+  margin-right: 225px;
+}
+
+#createuni button[type="submit"]:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+#createuni label {
+  float: left;
+  font-weight: 600;
+  padding-bottom: 5px;
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+#createuni #errormsg{
+  color: red;
+  margin-right: 220px;
+  margin-top: 10px;
+}
+
+/*--------------------------------------------------------------
+# Create New Event Section
+--------------------------------------------------------------*/
+#createevent {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+#createevent h2 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-right: 230px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#createevent .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+#createevent input[type=time], input[type=email], input[type=date], input[type=text], input[type=tel] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#createevent #category {
+  margin-bottom: 15px;
+  padding: 11px 11px 11px 11px;
+}
+
+#createevent #eventtype {
+  margin-bottom: 15px;
+  padding: 11px 11px 11px 11px;
+}
+
+#createevent .col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+  padding: 0 16px;
+}
+
+#createevent button[type="submit"] {
+  background: black;
+  border: 0;
+  padding: 10px 50px;
+  color: gold;
+  transition: 0.4s;
+  margin-top: 20px;
+  margin-right: 225px;
+  margin-bottom: 25px;
+}
+
+#createevent button[type="submit"]:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+#createevent label {
+  float: left;
+  font-weight: 600;
+  padding-bottom: 5px;
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+#createevent #errormsg{
+  color: red;
+  margin-right: 225px;
+  margin-top: 10px;
+}
+
+#createevent select {
+  height: max-content;
+}
+
+#map-canvas {
+  height: 64%;
+  width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Pending Event Section
+--------------------------------------------------------------*/
+#pendingevent {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+#pendingevent h2 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#pendingevent h5 {
+  color: gold;
+  float: left;
+  font-size: large;
+}
+
+#pendingevent .card-header{
+  background: black;
+}
+
+#pendingevent .btnapprove {
+  border: 1px solid black;
+  color: white;
+  background: green;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  width: 10%;
+  margin-right: 20px;
+}
+
+#pendingevent .btnapprove:hover {
+  color: white;
+  background-color: green;
+  border-color: white;
+}
+
+#pendingevent .btndeny {
+  border: 1px solid black;
+  color: white;
+  background: red;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  width: 10%;
+}
+
+#pendingevent .btndeny:hover {
+  color: white;
+  background-color: red;
+  border-color: white;
+}
+
+#pendingevent .decisionbuttons {
+  margin-top: 25px;
+  text-align: center;
+}
+
+#pendingevent .row {
+  margin-bottom: 75px;
+  margin-left: 20px;
+}
+
+/*--------------------------------------------------------------
+# Current Event Section
+--------------------------------------------------------------*/
+#schedule .nav-tabs li {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+#schedule .nav-tabs a.active {
+  color: gold;
+}
+
+#schedule .nav-tabs a{
+  color: black;
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 0px;
+  text-transform: none;
+}
+
+#schedule .sub-heading {
+  text-align: left;
+  font-size: 18px;
+  font-style: italic;
+  margin: 0 auto 30px auto;
+  margin-top: 25px;
+}
+
+#schedule .tab-pane {
+  transition: ease-in-out .2s;
+}
+
+#schedule .schedule-item {
+  border-bottom: 1px solid #cad4f6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  transition: background-color ease-in-out 0.3s;
+}
+
+#schedule .schedule-item:hover {
+  background-color: #fff;
+}
+
+#schedule .schedule-item time {
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+#schedule .schedule-item h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+#schedule .schedule-item p {
+  color: grey;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+#schedule h1 {
+  padding-top: 100px;
+  padding-bottom: 20px;
+  margin: 0 0 10px 0;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color:black;
+  text-align: center;
+}
+
+#schedule a {
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+#schedule #filterNav .show {
+  display: block;
+}
+
+#schedule #filterNav .btn{
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+#schedule #filterNav .btn.active {
+  text-decoration: underline;
+  color: gold;
+}
+/*--------------------------------------------------------------
+# My RSO Section
+--------------------------------------------------------------*/
+#rso {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 100px;
+}
+
+#rso h1 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#rso thead tr th{
+  color: gold;
+}
+
+#rso .btn {
+  border: 1px solid lightcoral;
+  border-radius: 50px;
+  color: black;
+  background: lightcoral;
+  font-size: 9px;
+  padding: 9px 15px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  float: right;
+}
+
+#rso .btn:hover {
+  color: white;
+  background-color: red;
+  border-color: white;
+}
+
+#rso #errormsg{
+  color: red;
+  text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Request new RSO Section
+--------------------------------------------------------------*/
+#newrso {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+#newrso h2 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-right: 240px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#newrso .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+
+#newrso input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#newrso textarea {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#newrso button[type="submit"] {
+  background: black;
+  border: 0;
+  padding: 10px 50px;
+  color: gold;
+  transition: 0.4s;
+  margin-top: 30px;
+  margin-right: 225px;
+}
+
+#newrso button[type="submit"]:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+#newrso label {
+  float: left;
+  font-weight: 600;
+  padding-bottom: 5px;
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+#newrso #errormsg {
+  color: red;
+  margin-right: 225px;
+}
+
+/*--------------------------------------------------------------
+# Search RSO Section
+--------------------------------------------------------------*/
+#searchrso {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+#searchrso h1 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-right: 240px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 25%;
+  float: right;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 70%;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header {
+  background-color: black;
+  color: gold;
+}
+
+#myTable tr:hover {
+  background-color: lightgray;
+}
+
+#myTable .btn {
+  border: 1px solid lightgreen;
+  border-radius: 50px;
+  color: black;
+  background: lightgreen;
+  font-size: 9px;
+  padding: 9px 15px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  float: right;
+}
+
+#myTable .btn:hover {
+  color: white;
+  background-color: green;
+  border-color: white;
+}
+
+#myTable a{
+  color: black;
+}
+
+/*--------------------------------------------------------------
+# View RSO Section
+--------------------------------------------------------------*/
+#viewAnRSO {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+#viewAnRSO h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#viewAnRSO p {
+  color: black;
+  margin-bottom: 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+#viewAnRSO .btn {
+  border: 1px solid lightgreen;
+  border-radius: 50px;
+  color: black;
+  background: lightgreen;
+  font-size: 12px;
+  padding: 15px 25px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  float: right;
+}
+
+#viewAnRSO .btn:hover {
+  color: white;
+  background-color: green;
+  border-color: white;
+}
+
+#viewAnRSO b{
+  font-weight: bold;
+}
+
+#viewAnRSO a{
+  text-decoration: none;
+}
+
+/*--------------------------------------------------------------
+# View Event Section
+--------------------------------------------------------------*/
+#viewAnEvent {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+#viewAnEvent h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#viewAnEvent p {
+  color: black;
+  margin-bottom: 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+#viewAnEvent b{
+  font-weight: bold;
+}
+
+/*--------------------------------------------------------------
+# Comment Section
+--------------------------------------------------------------*/
+
+#comment h2 {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+#comment .date {
+  font-size: 12px;
+}
+
+#comment .comment-text {
+  font-size: 16px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+#comment .fs-12 {
+  font-size: 12px;
+}
+
+#comment .shadow-none {
+  box-shadow: none;
+}
+
+#comment .name {
+  color: gold;
+  font-size: large;
+}
+
+#comment .textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+#comment .btn {
+  border: 1px solid black;
+  color: black;
+  background: white;
+  margin-bottom: 50px;
+}
+
+#comment .btn:hover {
+  color: white;
+  background-color: gold;
+  border-color: black;
+}
+
+#testcomment .card-body {
+  border-bottom: 1px solid lightgray;
+  font-size: 20px;
+}
+
+#testcomment .date {
+  font-size: 12px;
+}
+
+#testcomment .card {
+  margin-bottom: 50px;
+  margin-top: 25px;
+}
+
+#testcomment h2 {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 60px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#testcomment .btn{
+  border: 1px solid black;
+  color: gold;
+  background: black;
+  margin-bottom: 50px;
+}
+
+#testcomment .fa {
+  font-size: 18px;
+  float: right;
+}
+
+#testcomment #edit {
+  background-color: transparent; 
+  border: none;
+  color: green;
+  margin-right: 15px;
+}
+
+#testcomment #remove {
+  background-color: transparent; 
+  border: none;
+  color: red;
+}
+
+#testcomment .btn:hover {
+  color: black;
+  background-color: gold;
+  border-color: black;
+}
+
+#testcomment #theComment p{
+  font-size: 18px;
+}
+
+#testcomment div.stars {
+  width: 270px;
+  float: right;
+}
+
+#testcomment input.star { display: none; }
+
+#testcomment label.star {
+  float: right;
+  padding: 10px;
+  font-size: 20px;
+  color: #444;
+  transition: all .2s;
+}
+
+#testcomment input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+#testcomment label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+#testcomment label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
+/*--------------------------------------------------------------
+# View University
+--------------------------------------------------------------*/
+#viewAUni {
+  background: #fff;
+  position: relative;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+#viewAUni h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-bottom: 75px;
+  color:black;
+  font-family: "Philosopher", sans-serif;
+}
+
+#viewAUni p {
+  color: black;
+  margin-bottom: 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+#viewAUni b{
+  font-weight: bold;
+}

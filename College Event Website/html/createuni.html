@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>College Event Website | Create University Profile</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../images/favicon1.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../vendor/modal-video/css/modal-video.min.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- CSS File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Side Bar-->
+  <div id="mySidenav" class="sidenav">
+    <div id="logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="" title="" /></a>
+    </div>
+    <a href="superadmin.html">Dashboard</a>
+    <div id="sidebar-active"><a href="createuni.html">Create University Profile</a></div>
+    <a href="pendingevent.html">Check Pending Events</a>
+    <a href="pendingrso.html">Check Pending RSO Requests</a>
+    <a href="universityList.html">View University Profiles</a>
+    <a href="checkevents.html">Check Current Events</a>
+    <a href="../index.html" onclick="localStorage.clear()">Log Out</a>
+  </div>
+  <!-- End Side Bar-->
+
+  <!-- ======= Super Admin - Create University Profile Section ======= -->
+  <section id="createuni" class="padd-section">
+
+    <div class="container">
+      <div id="createsuccess"></div>
+      <div class="section-title text-center">
+        <h2>Create New University Profile Form</h2>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-md-8">
+              <div class="form-group">
+                <label for="uniname">University's Name</label>
+                <input type="text" id="uniname" name="uniname" placeholder="University of Central Florida">
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="4000 Central Florida Blvd">
+              </div>
+
+              <div class="form-group">
+                <label for="city"></i>City</label>
+                <input type="text" id="city" name="city" placeholder="Orlando">
+              </div>
+
+              <div class="row">
+                <div class="col-50">
+                  <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" placeholder="FL">
+                  </div>
+                </div>
+                <div class="col-50">
+                  <div class="form-group">
+                    <label for="zip">Zip</label>
+                    <input type="text" id="zip" name="zip" placeholder="32816">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-5 col-md-8">
+              <div class="form-group">
+                <label for="description">University's Description</label>
+                <textarea id="description" name="description" rows="6" cols="70"
+                  placeholder="Research university set on 1,415 acres with a lake and woodlands."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="population"></i>Number of Students</label>
+                <input type="text" id="population" name="population" placeholder="72000">
+              </div>
+            </div>
+          </div>
+          <div id="errormsg"></div>
+          <div class="button"><button onClick="CreateUni()" type="submit">Submit</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======= End Create University Profile Section ======= -->
+
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/modal-video/js/modal-video.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/superfish/superfish.min.js"></script>
+  <script src="../vendor/hoverIntent/hoverIntent.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- JavaScript File -->
+  <script src="../javascript/main.js"></script>
+
+  <script>
+    var userID = 1;
+
+ function CreateUni(){
+      var error = document.getElementById("errormsg");
+      error.innerText = "";
+      
+      var uniName = document.getElementById("uniname").value;
+      var address = document.getElementById("address").value;
+      var city = document.getElementById("city").value;
+      var state = document.getElementById("state").value;
+      var zip = document.getElementById("zip").value;
+      var description = document.getElementById("description").value;
+      var pop = document.getElementById("population").value;
+
+      if(uniName === "" || address === "" || city === "" || state === "" || zip === "" || description === "" || pop === ""){
+          var error = document.getElementById("errormsg");
+          error.innerText = "All fields must be filled in."
+      } else {
+        var createUniData = { "uniName": uniName, "address": address, "state": state, "city": city, "zip": zip, "description": description, "population": pop}
+          var jsonSend = JSON.stringify(createUniData);
+          console.log('JSON SENDING:' + jsonSend);
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://localhost/collegewebsite/api/createUniProfile.php', true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var info = JSON.parse(this.responseText);
+                console.log(info['info']);
+                
+                if(info['info'] === "Created!"){
+                  var created = document.getElementById("createsuccess");
+                  created.innerHTML = '<div class="alert alert-success alert-dismissible fade show" role="alert">New University Profile has been Created.' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                } else {
+                  var error = document.getElementById("errormsg");
+                      error.innerHTML = info['info'];
+                }
+               
+              }
+            }
+          };
+
+          xhr.send(jsonSend);
+      }   
+  }
+  </script>
+
+</body>
+
+</html>

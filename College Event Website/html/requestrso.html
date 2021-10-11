@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>College Event Website | Request New RSO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../images/favicon1.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../vendor/modal-video/css/modal-video.min.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- CSS File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Side Bar-->
+  <div id="mySidenav" class="sidenav">
+    <div id="logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="" title="" /></a>
+    </div>
+    <a href="student.html">Dashboard</a>
+    <a href="rsoStudent.html">My RSO</a>
+    <a href="checkeventsStudent.html">Check Current Events</a>
+    <a href="searchrso.html">Search RSOs</a>
+    <div id="sidebar-active"><a href="requestrso.html">Request New RSO</a></div>
+    <a href="../index.html" onclick="localStorage.clear()">Log Out</a>
+  </div>
+  <!-- End Side Bar-->
+
+  <!-- ======= Student - Request New RSO Section ======= -->
+  <section id="newrso" class="padd-section">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <div id="requestsuccess"></div>
+        <div id="errormsg"></div>
+        <h2>Request New RSO</h2>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-md-8">
+
+              <div class="form-group">
+                <label for="rsoname">RSO's Name</label>
+                <input type="text" id="rsoname" name="rsoname" , placeholder="Knights Communication">
+              </div>
+
+              <div class="form-group">
+                <label for="description">RSO's Description</label>
+                <textarea id="description" name="description" rows="6" cols="70" ,
+                  placeholder="The mission of Knights Communication is to further the individual welfare of its members by promoting education and advancement."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="email1"></i>RSO Admin's Email</label>
+                <input type="email" id="email1" name="email1" , placeholder="member1@knights.ucf.edu">
+              </div>
+              </div>
+
+              <div class="col-lg-5 col-md-8">
+              <div class="form-group">
+                <label for="email2"></i>Member 2 Email</label>
+                <input type="email" id="email2" name="email2" , placeholder="member2@knights.ucf.edu">
+              </div>
+
+              <div class="form-group">
+                <label for="email1"></i>Member 3 Email</label>
+                <input type="email" id="email3" name="email3" , placeholder="member3@knights.ucf.edu">
+              </div>
+
+              <div class="form-group">
+                <label for="email1"></i>Member 4 Email</label>
+                <input type="email" id="email4" name="email4" , placeholder="member4@knights.ucf.edu">
+              </div>
+
+              <div class="form-group">
+                <label for="email1"></i>Member 5 Email</label>
+                <input type="email" id="email5" name="email5" , placeholder="member5@knights.ucf.edu">
+              </div>
+            </div>
+
+          </div>
+          <div id="errormsg"></div>
+          <div class="button"><button onClick="RequestRSO()" type="submit">Request</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======= End Request new RSO Section ======= -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/modal-video/js/modal-video.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/superfish/superfish.min.js"></script>
+  <script src="../vendor/hoverIntent/hoverIntent.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- JavaScript File -->
+  <script src="../javascript/main.js"></script>
+
+  <script>
+    const userID = localStorage.getItem('userID');
+
+    function RequestRSO() {
+      var error = document.getElementById("errormsg");
+      error.innerText = "";
+      var rsoName = document.getElementById("rsoname").value;
+      var description = document.getElementById("description").value;
+      var adminEmail = document.getElementById("email1").value;
+      var memEmail2 = document.getElementById("email2").value;
+      var memEmail3 = document.getElementById("email3").value;
+      var memEmail4 = document.getElementById("email4").value;
+      var memEmail5 = document.getElementById("email5").value;
+
+      if (rsoName === "" || description === "" || adminEmail === "" || memEmail2 === "" || memEmail3 === "" || memEmail4 === "" || memEmail5 === "") {
+        var error = document.getElementById("errormsg");
+        error.innerText = "All fields must be filled in.";
+      } else {
+        var domain = adminEmail.substr((adminEmail.indexOf("@") + 1));
+        if (memEmail2.substr((memEmail2.indexOf("@") + 1)) === domain && memEmail3.substr((memEmail3.indexOf("@") + 1)) === domain && memEmail4.substr((memEmail4.indexOf("@") + 1)) === domain &&
+          memEmail5.substr((memEmail5.indexOf("@") + 1)) === domain) {
+
+          var requestRSO = { "userID": userID, "rsoName": rsoName, "description": description, "admin": adminEmail, "mem1": memEmail2, "mem2": memEmail3, "mem3": memEmail4, "mem4": memEmail5 }
+          var jsonSend = JSON.stringify(requestRSO);
+          console.log('JSON SENDING:' + jsonSend);
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://localhost/collegewebsite/api/requestRSO.php', true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var info = JSON.parse(this.response);
+                console.log(info);
+                if(info['error'] == null){
+                  var requested = document.getElementById("requestsuccess");
+                   requested.innerHTML = '<div class="alert alert-success alert-dismissible fade show" role="alert">New RSO request has been received.' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                } else {
+                  var error = document.getElementById("error");
+                     error.innerHTML = info['error'];
+                }
+              }
+            }
+          };
+
+          xhr.send(jsonSend);
+        } else {
+          var error = document.getElementById("errormsg");
+          error.innerText = "All E-mails provided must have the same domain.";
+        }
+      }
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>College Event Website | Current Events</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../images/favicon1.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../vendor/modal-video/css/modal-video.min.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- CSS File -->
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body onload="javascript:filterSelection('all')">
+  <!-- Side Bar-->
+  <div id="mySidenav" class="sidenav">
+    <div id="logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="" title="" /></a>
+    </div>
+    <a href="student.html">Dashboard</a>
+    <a href="rsoStudent.html">My RSO</a>
+    <div id="sidebar-active"><a href="checkeventsStudent.html">Check Current Events</a></div>
+    <a href="searchrso.html">Search RSOs</a>
+    <a href="requestrso.html">Request New RSO</a>
+    <a href="../index.html" onclick="localStorage.clear()">Log Out</a>
+  </div>
+  <!-- End Side Bar-->
+
+  <!-- ======= Student - Schedule Section ======= -->
+  <section id="schedule" class="section-with-bg">
+    <div class="container">
+      <h1>Current Events</h1>
+      <div id="errormsg"></div>
+
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#studentDay" role="tab" data-bs-toggle="tab">Today</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#studentAll" role="tab" data-bs-toggle="tab">All</a>
+        </li>
+      </ul>
+
+      <div class="tab-content row justify-content-center">
+
+        <div id="filterNav">
+          <button id="filterAll" class="btn active" onClick="filterSelection('all')">All</button>
+          <button id="filterPublic" class="btn" onclick="filterSelection('public')">Public</button>
+          <button id="filterPrivate" class="btn" onclick="filterSelection('private')">Private</button>
+          <button id="filterRSO" class="btn" onclick="filterSelection('rso')">RSO</button>
+        </div>
+
+        <!-- Day View -->
+        <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="studentDay">
+          <h3 class="sub-heading">Today's Event</h3>
+          <!-- Today's Events will be inserted here-->
+        </div>
+        <!-- End Day View -->
+
+        <!-- All View -->
+        <div role="tabpanel" class="col-lg-9  tab-pane fade" id="studentAll">
+          <h3 class="sub-heading">All Upcoming Events</h3>
+          <!--All will be inserted here-->
+        </div>
+        <!-- End All View -->
+      </div>
+    </div>
+  </section>
+  <!-- ======= End Current Events Section ======= -->
+
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/modal-video/js/modal-video.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/superfish/superfish.min.js"></script>
+  <script src="../vendor/hoverIntent/hoverIntent.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- JavaScript File -->
+  <script src="../javascript/main.js"></script>
+
+
+  <!-- DATA JAVASCRIPT-->
+  <script>
+     const userID = localStorage.getItem('userID');
+  
+  function viewEvent(eventID){
+        console.log(eventID);
+        localStorage.removeItem('clickedEventID');
+        localStorage.setItem('clickedEventID', eventID);
+        window.location.href = "viewEventStudent.html";
+  }
+  
+    function filterSelection(category){
+      var eventData = {"userID": userID}
+              var jsonSend = JSON.stringify(eventData);
+              console.log('JSON SENDING:' + jsonSend);
+  
+              var xhr = new XMLHttpRequest();
+              xhr.open('POST', 'http://localhost/collegewebsite/api/dailyEvents.php', true);
+              xhr.setRequestHeader("Content-Type", "application/json");
+  
+              xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                    var today = JSON.parse(this.response);
+                    console.log(today);
+  
+                    if(today['error'] == null){
+                      var xhr2 = new XMLHttpRequest();
+                      xhr2.open('POST', 'http://localhost/collegewebsite/api/getAllEvents.php', true);
+                      xhr2.setRequestHeader("Content-Type", "application/json");
+  
+                      xhr2.onreadystatechange = function () {
+                        if (xhr2.readyState === 4) {
+                          if (xhr2.status === 200) {
+                            var allE = JSON.parse(this.response);
+                            console.log(allE);
+  
+                            if(allE['error'] == null){
+                              //day view all
+                                if(category === "all"){
+                                  while(document.getElementById('studentDay').firstChild){
+                                      document.getElementById('studentDay').removeChild(document.getElementById('studentDay').firstChild);
+                                    }
+                                    document.getElementById("filterAll").setAttribute("class", "btn active");
+                                    document.getElementById("filterPrivate").setAttribute("class", "btn");
+                                    document.getElementById("filterPublic").setAttribute("class", "btn");
+                                    document.getElementById("filterRSO").setAttribute("class", "btn");
+                                    for (var i = 0; i < today['info'].length; i++) {
+                                      var day = document.createElement('div');
+                                      day.id = "studentDay";
+                                      document.getElementById('studentDay').appendChild(day)
+                                      day.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + today['info'][i]['Event_Time'] +
+                                        '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + today['info'][i]['Event_Name'] + '\')">' + today['info'][i]['Event_Name'] + '</a><p>' 
+                                          + today['info'][i]['Desc'] + '</p></div></div>';
+                                    }
+                                }
+  
+                                //all view all
+                                if(category === "all"){
+                                  while(document.getElementById('studentAll').firstChild){
+                                      document.getElementById('studentAll').removeChild(document.getElementById('studentAll').firstChild);
+                                  }
+                                  for (var i = 0; i < allE['info'].length; i++) {
+                                    var all = document.createElement('div');
+                                    all.id = "studentAll";
+                                    document.getElementById('studentAll').appendChild(all)
+                                    all.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + allE['info'][i]['Event_Date'] + '</time><br/>' + '<time>' + allE['info'][i]['Event_Time'] +
+                                      '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + allE['info'][i]['Event_Name'] + '\')">' + allE['info'][i]['Event_Name'] + '</a><p>' + allE['info'][i]['Desc'] + '</p></div></div>';
+                                  }
+                                }
+  
+                                  //day private
+                                  if(category === "private"){
+                                      while(document.getElementById('studentDay').firstChild){
+                                        document.getElementById('studentDay').removeChild(document.getElementById('studentDay').firstChild);
+                                      }
+                                      document.getElementById("filterAll").setAttribute("class", "btn");
+                                      document.getElementById("filterPrivate").setAttribute("class", "btn active");
+                                      document.getElementById("filterPublic").setAttribute("class", "btn");
+                                      document.getElementById("filterRSO").setAttribute("class", "btn");
+                                    for (var i = 0; i < today['info'].length; i++) {
+                                      if(today['info'][i]['Event_Type'] === "Private"){
+                                        var day = document.createElement('div');
+                                        day.id = "studentDay";
+                                        document.getElementById('studentDay').appendChild(day)
+                                        day.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + today['info'][i]['Event_Time'] +
+                                        '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + today['info'][i]['Event_Name'] + '\')">' + today['info'][i]['Event_Name'] + '</a><p>' 
+                                          + today['info'][i]['Desc'] + '</p></div></div>';
+                                      }
+                                    }
+                                  }
+  
+                                  //all private
+                                  if(category === "private"){
+                                    while(document.getElementById('studentAll').firstChild){
+                                        document.getElementById('studentAll').removeChild(document.getElementById('studentAll').firstChild);
+                                      }
+                                    for (var i = 0; i < allE['info'].length; i++) {
+                                      if(allE['info'][i]['Event_Type'] === "Private"){
+                                      var all = document.createElement('div');
+                                      all.id = "studentAll";
+                                      document.getElementById('studentAll').appendChild(all)
+                                      all.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + allE['info'][i]['Event_Date'] + '</time><br/>' + '<time>' + allE['info'][i]['Event_Time'] +
+                                        '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + allE['info'][i]['Event_Name'] + '\')">' + allE['info'][i]['Event_Name'] + '</a><p>' + allE['info'][i]['Desc'] + '</p></div></div>';
+                                    }
+                                  }
+                                }
+  
+                                //day public
+                                if(category === "public"){
+                                  while(document.getElementById('studentDay').firstChild){
+                                      document.getElementById('studentDay').removeChild(document.getElementById('studentDay').firstChild);
+                                  }
+                                  document.getElementById("filterAll").setAttribute("class", "btn");
+                                    document.getElementById("filterPrivate").setAttribute("class", "btn");
+                                    document.getElementById("filterPublic").setAttribute("class", "btn active");
+                                    document.getElementById("filterRSO").setAttribute("class", "btn");
+  
+                                  for (var i = 0; i < today['info'].length; i++) {
+                                    if(today['info'][i]['Event_Type'] === "Public"){
+                                      var day = document.createElement('div');
+                                      day.id = "studentDay";
+                                      document.getElementById('studentDay').appendChild(day)
+                                        day.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + today['info'][i]['Event_Time'] +
+                                      '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + today['info'][i]['Event_Name'] + '\')">' + today['info'][i]['Event_Name'] + '</a><p>' 
+                                        + today['info'][i]['Desc']+ '</p></div></div>';
+                                    }
+                                  }
+                                }
+  
+                                   //all public
+                                  if(category === "public"){
+                                    while(document.getElementById('studentAll').firstChild){
+                                        document.getElementById('studentAll').removeChild(document.getElementById('studentAll').firstChild);
+                                      }
+                                    for (var i = 0; i < allE['info'].length; i++) {
+                                      if(allE['info'][i]['Event_Type'] === "Public"){
+                                      var all = document.createElement('div');
+                                      all.id = "studentAll";
+                                      document.getElementById('studentAll').appendChild(all)
+                                      all.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + allE['info'][i]['Event_Date'] + '</time><br/>' + '<time>' + allE['info'][i]['Event_Time'] +
+                                        '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + allE['info'][i]['Event_Name'] + '\')">' + allE['info'][i]['Event_Name'] + '</a><p>' + allE['info'][i]['Desc'] + '</p></div></div>';
+                                    }
+                                  }
+                                }
+  
+                                //day rso
+                                if(category === "rso"){
+                                  while(document.getElementById('studentDay').firstChild){
+                                      document.getElementById('studentDay').removeChild(document.getElementById('studentDay').firstChild);
+                                  }
+                                  document.getElementById("filterAll").setAttribute("class", "btn");
+                                    document.getElementById("filterPrivate").setAttribute("class", "btn");
+                                    document.getElementById("filterPublic").setAttribute("class", "btn");
+                                    document.getElementById("filterRSO").setAttribute("class", "btn active");
+                                  for (var i = 0; i < today['info'].length; i++) {
+                                    if(today['info'][i]['Event_Type'] === "RSO"){
+                                      var day = document.createElement('div');
+                                      day.id = "studentDay";
+                                      document.getElementById('studentDay').appendChild(day)
+                                        day.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + today['info'][i]['Event_Time'] +
+                                      '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + today['info'][i]['Event_Name'] + '\')">' + today['info'][i]['Event_Name'] + '</a><p>' 
+                                        + today['info'][i]['Desc'] + '</p></div></div>';
+                                    }
+                                  }
+                                }
+  
+                                //all rso
+                                if(category === "rso"){
+                                while(document.getElementById('studentAll').firstChild){
+                                    document.getElementById('studentAll').removeChild(document.getElementById('studentAll').firstChild);
+                                  }
+                                for (var i = 0; i < allE['info'].length; i++) {
+                                  if(allE['info'][i]['Event_Type'] === "RSO"){
+                                  var all = document.createElement('div');
+                                  all.id = "studentAll";
+                                  document.getElementById('studentAll').appendChild(all)
+                                  all.innerHTML = '<div class="row schedule-item"><div class="col-md-2"><time>' + allE['info'][i]['Event_Date'] + '</time><br/>' + '<time>' + allE['info'][i]['Event_Time'] +
+                                    '</time></div><div class="col-md-10"><a href="#" onclick="viewEvent(\'' + allE['info'][i]['Event_Name'] + '\')">' + allE['info'][i]['Event_Name'] + '</a><p>' + allE['info'][i]['Desc'] + '</p></div></div>';
+                                }
+                              }
+                            }
+  
+                            } else {
+                              var error = document.getElementById("errormsg");
+                              error.innerHTML = all['error'];
+                            }
+                          }
+                        }
+                      };
+  
+                      xhr2.send(jsonSend);  
+                    } else {
+                      var error = document.getElementById("errormsg");
+                      error.innerHTML = today['error'];
+                    }
+                  }
+                }
+              };
+  
+              xhr.send(jsonSend);  
+  }
+  
+
+  </script>
+  <!-- End DATA JAVASCRIPT -->
+
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>College Event Website | Pending Events</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../images/favicon1.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../vendor/modal-video/css/modal-video.min.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- CSS File -->
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body onload="javascript:getPendingEvents()">
+  <!-- Side Bar-->
+  <div id="mySidenav" class="sidenav">
+    <div id="logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="" title="" /></a>
+    </div>
+    <a href="superadmin.html">Dashboard</a>
+    <a href="createuni.html">Create University Profile</a>
+    <div id="sidebar-active"><a href="pendingevent.html">Check Pending Events</a></div>
+    <a href="pendingrso.html">Check Pending RSO Requests</a>
+    <a href="universityList.html">View University Profiles</a>
+    <a href="checkevents.html">Check Current Events</a>
+    <a href="../index.html" onclick="localStorage.clear()">Log Out</a>
+  </div>
+  <!-- End Side Bar-->
+
+  <!-- ======= Super Admin - Pending Event Section ======= -->
+  <section id="pendingevent" class="padd-section">
+
+    <div class="container">
+      <div id="createsuccess"></div>
+      <div class="section-title text-center">
+        <h2>Pending Events</h2>
+        <div id="errormsg"></div>
+      </div>
+
+      <div class="row">
+
+        <div id="accordion">
+          <!-- Pending Event Requests will be shown here -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======= End Pending Event Section ======= -->
+
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/modal-video/js/modal-video.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/superfish/superfish.min.js"></script>
+  <script src="../vendor/hoverIntent/hoverIntent.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- Bootstrap JS Files-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- JS File -->
+  <script src="../javascript/main.js"></script>
+
+  <!-- DATA JAVASCRIPT-->
+  <script>
+    function getPendingEvents() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost/collegewebsite/api/getPendingEvents.php', true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+         if (xhr.readyState === 4) {
+           if (xhr.status === 200) {
+            var info = JSON.parse(this.response);
+             if(info['error'] == null){
+              for (var i = 0; i < info['info'].length; i++) {
+                var pending = document.createElement('div');
+                pending.id = "accordion";
+                document.getElementById('accordion').appendChild(pending)
+                pending.innerHTML = '<div class="card"><div class="card-header"><h5 class="mb-0">' +
+                  info['info'][i]['Event Name'] + '</h5></div><div data-parent="#accordion"><div class="card-body"><b>Date: </b>' + info['info'][i]['date'] +
+                  '<br /><b>Start Time: </b>' + info['info'][i]['startTime'] + '<br /><b>End Time: </b>' + info['info'][i]['endTime'] +  '<br/><b>Location: </b>' + info['info'][i]['address'] + '<br /><b>Event Type: </b>' + info['info'][i]['Event Type'] + '<br /><b>Event Category: </b>' + info['info'][i]['Event Category'] +
+                  '<br /><b>Contact Phone Number: </b>' + info['info'][i]['phone'] + '<br /><b>Contact E-mail: </b>' + info['info'][i]['email'] + '<br /><b>Description: </b>' + info['info'][i]['desc'] +
+                  '<div class="decisionbuttons"><button class="btnapprove" onclick="Approve(\'' + info['info'][i]['Event Name'] + '\')">Approve</button><button class="btndeny", onclick="Deny(\'' + info['info'][i]['Event Name'] + '\')">Deny</button></div></div></div></div>'
+              }
+             } else {
+              var error = document.getElementById("errormsg");
+                error.innerHTML = info['error'];
+             }
+                  
+            }
+          }
+      };
+
+            xhr.send();  
+    }
+
+    function Approve(pendingEvent) {
+      var approveEvent = {"pendingEvent": pendingEvent}
+            var jsonSend = JSON.stringify(approveEvent);
+            console.log('JSON SENDING:' + jsonSend);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost/collegewebsite/api/approveEvent.php', true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  console.log(this.responseText);
+                  var created = document.getElementById("createsuccess");
+                created.innerHTML = '<div class="alert alert-success alert-dismissible fade show" role="alert">Event approved! Refresh page to see new changes.' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                }
+              }
+            };
+
+            xhr.send(jsonSend);  
+    }
+
+    function Deny(pendingEvent) {
+      var denyEvent = {"pendingEvent": pendingEvent}
+            var jsonSend = JSON.stringify(denyEvent);
+            console.log('JSON SENDING:' + jsonSend);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost/collegewebsite/api/denyEvent.php', true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  console.log(this.response);
+                  var created = document.getElementById("createsuccess");
+                created.innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">Event denied! Refresh page to see new changes.' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                }
+              }
+            };
+
+            xhr.send(jsonSend);  
+    }
+
+  </script>
+  <!-- End DATA JAVASCRIPT-->
+
+</body>
+
+</html>
